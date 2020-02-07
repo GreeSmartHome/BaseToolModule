@@ -7,6 +7,7 @@
 //
 
 #import "GRViewController.h"
+#import <UIView+ZZ.h>
 
 @interface GRViewController ()
 
@@ -18,6 +19,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+//    self.view.x
 }
 
 - (void)didReceiveMemoryWarning
