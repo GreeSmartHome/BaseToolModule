@@ -26,8 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage *)imageFromImage:(UIImage *)image inRect:(CGRect)rect;
 + (UIImage *)imageFitScreen:(UIImage *)image withSize:(CGSize)size;
 + (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
+
 /// 加载不要被渲染的图片
-+ (UIImage *)imageWithOriginalRenderingMode:(NSString *)imageName;
++ (UIImage *)originImageWithName: (NSString *)name;
+///返回圆形图片
+- (UIImage *)circleImage;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1,16 +1,43 @@
 PODS:
-  - BaseModule (0.1.0)
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - BaseModule (0.1.0):
+    - AFNetworking
+    - SDWebImage
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
 
 DEPENDENCIES:
   - BaseModule (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - SDWebImage
 
 EXTERNAL SOURCES:
   BaseModule:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BaseModule: d23481e7fb7ada90dd5b7321d5681a2ff1f8624f
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  BaseModule: 5c22beaaa7b824522b145073caeda64e82e4fbef
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
 
 PODFILE CHECKSUM: 5a58a5712b516e98a596e3f0e1f05058a286dfee
 
-COCOAPODS: 1.9.0.beta.3
+COCOAPODS: 1.8.4
