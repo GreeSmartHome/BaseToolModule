@@ -33,21 +33,21 @@ Pod::Spec.new do |s|
  # s.source_files = 'BaseModule/Classes/**/*'
   
   s.subspec 'Base' do |b|
-    b.source_files = 'XMGFMBase/Classes/Base/**/*'
+    b.source_files = 'BaseModule/Classes/Base/**/*'
   end
 
   s.subspec 'Category' do |c|
-    c.source_files = 'XMGFMBase/Classes/Category/**/*'
+    c.source_files = 'BaseModule/Classes/Category/**/*'
   end
 
   s.subspec 'Network' do |n|
-    n.source_files = 'XMGFMBase/Classes/Network/**/*'
+    n.source_files = 'BaseModule/Classes/Network/**/*'
     n.dependency 'AFNetworking'
     n.dependency 'SDWebImage'
   end
 
   s.subspec 'Tool' do |t|
-    t.source_files = 'XMGFMBase/Classes/Tool/**/*'
+    t.source_files = 'BaseModule/Classes/Tool/**/*'
   end
    
   # s.resource_bundles = {
