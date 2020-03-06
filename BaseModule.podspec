@@ -42,7 +42,6 @@ Pod::Spec.new do |s|
 
   s.subspec 'Network' do |n|
     n.source_files = 'BaseModule/Classes/Network/**/*'
-    n.dependency 'Category'
     n.dependency 'AFNetworking'
     n.dependency 'SDWebImage'
   end
