@@ -1,7 +1,7 @@
 {
   "name": "BaseModule",
-  "version": "0.1.0",
-  "summary": "分类组件库",
+  "version": "0.2.2",
+  "summary": "基础组件库",
   "description": "这是简单封装的一个分类组件库，待完善",
   "homepage": "https://gitee.com/luojiya/BaseModule",
   "license": {
@@ -13,18 +13,35 @@
   },
   "source": {
     "git": "https://gitee.com/luojiya/BaseModule.git",
-    "tag": "0.1.0"
+    "tag": "0.2.2"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "BaseModule/Classes/**/*",
-  "dependencies": {
-    "AFNetworking": [
+  "subspecs": [
+    {
+      "name": "Base",
+      "source_files": "BaseModule/Classes/Base/**/*"
+    },
+    {
+      "name": "Category",
+      "source_files": "BaseModule/Classes/Category/**/*"
+    },
+    {
+      "name": "Network",
+      "source_files": "BaseModule/Classes/Network/**/*",
+      "dependencies": {
+        "AFNetworking": [
 
-    ],
-    "SDWebImage": [
+        ],
+        "SDWebImage": [
 
-    ]
-  }
+        ]
+      }
+    },
+    {
+      "name": "Tool",
+      "source_files": "BaseModule/Classes/Tool/**/*"
+    }
+  ]
 }

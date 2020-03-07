@@ -11,15 +11,18 @@
 
 @interface GRNetworkManager ()
 
-@property (nonatomic ,strong) AFHTTPSessionManager *sessionManager;
+
+@property (nonatomic ,strong) AFNetworkReachabilityManager *networkManager;
+
+@property (nonatomic ,assign) NetworkType type;
 
 @end
 
 @implementation GRNetworkManager
 
-static GRNetworkManager *manager = nil;
+static GRNetworkManager *manager=nil;
+
 + (instancetype)shareManager {
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[self alloc]init];
@@ -35,40 +38,61 @@ static GRNetworkManager *manager = nil;
     return manager;
 }
 
-- (void)setValue:(NSString *)value forHttpField:(NSString *)field {
-    [self.sessionManager.requestSerializer setValue:value forHTTPHeaderField:field];
-}
-
-- (AFHTTPSessionManager *)sessionManager {
-    
-    if (!_sessionManager) {
-        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        config.timeoutIntervalForRequest = 30.0f;
-        _sessionManager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:config];
-        NSMutableSet *setM = [_sessionManager.responseSerializer.acceptableContentTypes mutableCopy];
-        [setM addObject:@"text/plain"];
-        [setM addObject:@"text/html"];
-        _sessionManager.responseSerializer.acceptableContentTypes = [setM copy];
+- (instancetype)init {
+    if (self) {
+        self = [super init];
+        
+        [self setupNetWorkManager];
     }
-    return _sessionManager;
+    return self;
 }
 
-- (void)request:(RequestType)requestType urlStr: (NSString *)urlStr parameter: (NSDictionary *)param resultBlock: (void(^)(id responseObject, NSError *error))resultBlock {
+- (void)setupNetWorkManager {
+    //初始化
+    self.type = NetworkTypeUnknow;
     
-    void(^successBlock)(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) = ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        resultBlock(responseObject, nil);
-    };
-
-    void(^failBlock)(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) = ^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        resultBlock(nil, error);
-    };
-
-    if (requestType == RequestTypeGET) {
-        [self.sessionManager GET:urlStr parameters:param progress:nil success:successBlock failure:failBlock];
-    }else {
-        [self.sessionManager POST:urlStr parameters:param progress:nil success:successBlock failure:failBlock];
-    };
+    //1.创建网络状态监测管理者
+    self.networkManager = [AFNetworkReachabilityManager sharedManager];
     
+    __weak typeof (self) weakSelf = self;
+    [self.networkManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                if ([weakSelf.delegate respondsToSelector:@selector(network:didChaned:)]) {
+                    [weakSelf.delegate network:weakSelf didChaned:NetworkTypeUnknow];
+                }
+                weakSelf.type = NetworkTypeUnknow;
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                if ([weakSelf.delegate respondsToSelector:@selector(network:didChaned:)]) {
+                    [weakSelf.delegate network:weakSelf didChaned:NetworkTypeNotReachable];
+                }
+                weakSelf.type = NetworkTypeNotReachable;
+            break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                if ([weakSelf.delegate respondsToSelector:@selector(network:didChaned:)]) {
+                    [weakSelf.delegate network:weakSelf didChaned:NetworkType3G4G];
+                }
+                weakSelf.type = NetworkType3G4G;
+            break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                if ([weakSelf.delegate respondsToSelector:@selector(network:didChaned:)]) {
+                    [weakSelf.delegate network:weakSelf didChaned:NetworkTypeWifi];
+                }
+                weakSelf.type = NetworkTypeWifi;
+            break;
+                
+            default:
+                break;
+        }
+    }];
+    //开始监听
+    [self.networkManager startMonitoring];
+}
+
+- (NetworkType)getNetWorkType {
+    return self.type;
 }
 
 

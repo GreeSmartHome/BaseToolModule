@@ -40,6 +40,12 @@
 //    } complete:^{
 //
 //    }];
+
+    NSInteger ty = [[GRNetworkManager shareManager] getNetWorkType];
+    if (ty == NetworkTypeWifi) {
+         NSLog(@"网络环境WiFi");
+    }
+   
     
 }
 -(NSString *)getCurrentTime

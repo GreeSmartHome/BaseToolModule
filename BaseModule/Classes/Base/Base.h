@@ -5,8 +5,8 @@
 //  Created by 冉东军 on 2020/2/25.
 //
 
-#ifndef base_h
-#define base_h
+#ifndef Base_h
+#define Base_h
 
 // 如果是调试模式(DEBUG 是调试模式下, 自带的宏)
 #ifdef DEBUG

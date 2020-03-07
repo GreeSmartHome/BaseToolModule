@@ -10,26 +10,31 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum : NSUInteger {
-    RequestTypeGET,
-    RequestTypePOST,
-} RequestType;
+typedef NS_ENUM(NSInteger,NetworkType){
+    NetworkType3G4G,
+    NetworkTypeWifi,
+    NetworkTypeUnknow,
+    NetworkTypeNotReachable,
+};
+@class GRNetworkManager;
+@protocol GRNetworkManagerDelegate <NSObject>
+
+- (void)network:(GRNetworkManager *)network didChaned:(NetworkType)networkType;
+
+@end
 
 @interface GRNetworkManager : NSObject
 
+@property (nonatomic ,weak) id <GRNetworkManagerDelegate> delegate;
 /**
  创建单例
  */
 + (instancetype)shareManager;
-/**
-  设置请求头文件
- */
-- (void)setValue:(NSString *)value forHttpField:(NSString *)field;
 
 /**
-  发送请求
+ 检测网络环境
  */
-- (void)request:(RequestType)requestType urlStr: (NSString *)urlStr parameter: (NSDictionary *)param resultBlock: (void(^)(id responseObject, NSError *error))resultBlock;
+- (NetworkType)getNetWorkType;
 
 @end
 

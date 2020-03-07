@@ -10,8 +10,7 @@
 #endif
 #endif
 
-#import "base.h"
-#import "Sington.h"
+#import "Base.h"
 #import "CALayer+PauseAimate.h"
 #import "UIColor+ZZ.h"
 #import "UIImage+ZZ.h"
