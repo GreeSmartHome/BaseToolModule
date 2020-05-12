@@ -17,8 +17,9 @@
 #import "UIView+Nib.h"
 #import "UIView+ZZ.h"
 #import "GRNetworkManager.h"
+#import "GRRequestManager.h"
 #import "UIImageView+Extension.h"
-#import "GRUnity.h"
+#import "DJUnity.h"
 
 FOUNDATION_EXPORT double BaseModuleVersionNumber;
 FOUNDATION_EXPORT const unsigned char BaseModuleVersionString[];

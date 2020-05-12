@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GRUnity : NSObject
+@interface DJUnity : NSObject
 
 
 /**

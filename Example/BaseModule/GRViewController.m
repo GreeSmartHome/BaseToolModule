@@ -9,6 +9,7 @@
 #import "GRViewController.h"
 #import <UIView+ZZ.h>
 #import <GRNetworkManager.h>
+#import <GRRequestManager.h>
 #import <UIImageView+Extension.h>
 
 @interface GRViewController ()
@@ -20,26 +21,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-//    self.view.x
-//    @{@"server":[self getServer],@"time":[self getCurrentTime],@"user":@"18163572571",@"psw":@"123456"}
-//    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-//    param[@"time"] = [self getCurrentTime];
-//    param[@"user"] = [self getCurrentTime];
-//    param[@"psw"] = [self getCurrentTime];
-//
-//    __weak typeof (self) weaksele = self;
-//
-//    [[GRNetworkManager shareManager] request:RequestTypeGET urlStr:@"https://grih.gree.com/App/Time" parameter:nil resultBlock:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
-//
-//        NSLog(@"%@",responseObject);
-//    }];
-//
-//    [[UIImageView new] setURLImageWithURL:nil progress:^(CGFloat progress) {
-//
-//    } complete:^{
-//
-//    }];
+    
+	 NSString *url = @"https://grih.gree.com/App/GetFeaturedOrTipsList";
+   NSMutableDictionary *param = [NSMutableDictionary dictionary];
+   param[@"type"] = @(0);
+   param[@"index"] = @(1);
+   param[@"cnt"] = @(10);
+   
+   NSMutableString *arguments = [NSMutableString string];
+   [arguments appendString:[NSString stringWithFormat:@"?type=%@", @(0)]];
+   [arguments appendString:[NSString stringWithFormat:@"&index=%@&cnt=%@", @(1), @(10)]];
+   
+   NSString *urlStr = [NSString stringWithFormat:@"%@%@",url,arguments];
+   
+   [[GRRequestManager shareManager] request:RequestTypeGET urlStr:urlStr parameter:param resultBlock:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+       
+       if (!error) {
+           NSDictionary *result = (NSDictionary *)responseObject;
+          NSDictionary *result2 =  [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+           NSLog(@"====%@",result);
+       }
+       
+   }];
+    
+    
 
     NSInteger ty = [[GRNetworkManager shareManager] getNetWorkType];
     if (ty == NetworkTypeWifi) {

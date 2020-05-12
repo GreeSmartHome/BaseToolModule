@@ -6,11 +6,11 @@
 //  Copyright © 2017年 gree. All rights reserved.
 //
 
-#import "GRUnity.h"
+#import "DJUnity.h"
 #import <sys/utsname.h>
 #import <CommonCrypto/CommonCryptor.h>
 
-@implementation GRUnity
+@implementation DJUnity
 
 + (UIColor*)colorWithRGBHex:(UInt32)hex
 {
@@ -622,16 +622,16 @@
 //获取当前控制器
 +(UIViewController *)getCurrentViewController{
     UIViewController *keywindow = [UIApplication sharedApplication].delegate.window.rootViewController;
-    return [GRUnity getVisibleViewControllerFrom:keywindow];
+    return [DJUnity getVisibleViewControllerFrom:keywindow];
 }
 +(UIViewController *)getVisibleViewControllerFrom:(UIViewController *)vc{
     if ([vc isKindOfClass:[UINavigationController class]]) {
-        return [GRUnity getVisibleViewControllerFrom:((UINavigationController *)vc).visibleViewController];
+        return [DJUnity getVisibleViewControllerFrom:((UINavigationController *)vc).visibleViewController];
     }else if ([vc isKindOfClass:[UITabBarController class]]){
-        return [GRUnity getVisibleViewControllerFrom:((UITabBarController *)vc).selectedViewController];
+        return [DJUnity getVisibleViewControllerFrom:((UITabBarController *)vc).selectedViewController];
     }else{
         if (vc.presentedViewController != nil) {
-            return [GRUnity getVisibleViewControllerFrom:vc.presentedViewController];
+            return [DJUnity getVisibleViewControllerFrom:vc.presentedViewController];
         }else{
             return vc;
         }
