@@ -60,7 +60,7 @@ static GRRequestManager *manager = nil;
 }
 
 
-- (void)request:(RequestType)requestType urlStr: (NSString *)urlStr headers: (NSDictionary *)headers parameter: (NSDictionary *)param resultBlock: (void(^)(id responseObject, NSError *error))resultBlock {
+- (void)request:(RequestType)requestType urlStr: (NSString *)urlStr parameter: (NSDictionary *)param resultBlock: (void(^)(id responseObject, NSError *error))resultBlock {
     
     void(^successBlock)(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) = ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         resultBlock(responseObject, nil);
@@ -71,9 +71,9 @@ static GRRequestManager *manager = nil;
     };
 
     if (requestType == RequestTypeGET) {
-        [self.sessionManager GET:urlStr parameters:param headers:headers progress:nil success:successBlock failure:failBlock];
+        [self.sessionManager GET:urlStr parameters:param progress:nil success:successBlock failure:failBlock];
     }else {
-        [self.sessionManager POST:urlStr parameters:param headers:headers progress:nil success:successBlock failure:failBlock];
+        [self.sessionManager POST:urlStr parameters:param progress:nil success:successBlock failure:failBlock];
     };
     
 }

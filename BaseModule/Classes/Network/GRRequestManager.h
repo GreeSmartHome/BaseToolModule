@@ -29,7 +29,7 @@ typedef enum : NSUInteger {
 /**
   发送请求
  */
-- (void)request:(RequestType)requestType urlStr: (NSString *)urlStr headers: (NSDictionary *)headers parameter: (NSDictionary *)param resultBlock: (void(^)(id responseObject, NSError *error))resultBlock;
+- (void)request:(RequestType)requestType urlStr: (NSString *)urlStr parameter: (NSDictionary *)param resultBlock: (void(^)(id responseObject, NSError *error))resultBlock;
 
 @end
 

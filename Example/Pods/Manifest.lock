@@ -14,20 +14,20 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - BaseModule (0.2.3):
-    - BaseModule/Base (= 0.2.3)
-    - BaseModule/Category (= 0.2.3)
-    - BaseModule/Network (= 0.2.3)
-    - BaseModule/Tool (= 0.2.3)
-  - BaseModule/Base (0.2.3)
-  - BaseModule/Category (0.2.3)
-  - BaseModule/Network (0.2.3):
+  - BaseModule (0.2.4):
+    - BaseModule/Base (= 0.2.4)
+    - BaseModule/Category (= 0.2.4)
+    - BaseModule/Network (= 0.2.4)
+    - BaseModule/Tool (= 0.2.4)
+  - BaseModule/Base (0.2.4)
+  - BaseModule/Category (0.2.4)
+  - BaseModule/Network (0.2.4):
     - AFNetworking
     - SDWebImage
-  - BaseModule/Tool (0.2.3)
-  - SDWebImage (5.5.2):
-    - SDWebImage/Core (= 5.5.2)
-  - SDWebImage/Core (5.5.2)
+  - BaseModule/Tool (0.2.4)
+  - SDWebImage (5.8.0):
+    - SDWebImage/Core (= 5.8.0)
+  - SDWebImage/Core (5.8.0)
 
 DEPENDENCIES:
   - BaseModule (from `../`)
@@ -43,9 +43,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  BaseModule: 87e7fafbe9b1aedc99d1186f9807b5839edfd333
-  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  BaseModule: 8f3ac8e4843e3eeaaa9c46025e1d0110df645b71
+  SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
 
 PODFILE CHECKSUM: 5a58a5712b516e98a596e3f0e1f05058a286dfee
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.9.1
